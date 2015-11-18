@@ -1,0 +1,3 @@
+[submodule "src/barcode"]
+	path = src/barcode
+	url = https://github.com/jbdemonte/barcode.git

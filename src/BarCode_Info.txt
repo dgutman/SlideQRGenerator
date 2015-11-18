@@ -1,0 +1,84 @@
+http://www.avery.com/avery/en_us/Products/Labels/Identification-Labels/Multi_Purpose-Labels_05424.htm
+
+
+If you have these and are frustrated with printing, try using these dimesions to add a custom label in your Word 'envelopes and labels tool'. Instead of avery, select label vendor 'other/custom.' I created a 'new label' using these 'details:' Top Margin=.5", Side Margin=.43", Vertical pitch=.56", Horizontal pitch=.8", label height=.5", label width=.75", nuymber across=4, number down=9, page size=custom page width=4", page height=6"
+
+
+
+
+
+
+
+//Companies that sell slide labels
+arrow11Slide Label Sheet Form for Laser Printing
+Available in standard thickness only with square corner or round corner on 81⁄2" x 11" sheet. Price is 5000 labels per carton.
+
+
+
+https://www.emsdiasum.com/microscopy/products/label/biohazard.aspx
+
+http://www.shamrocklabels.com/store/default.aspx?DepartmentId=412
+
+
+https://boulderinformationservices.wordpress.com/2011/08/25/print-avery-labels-using-css-and-html/
+
+https://www.unitedadlabel.com/laser-printer-slide-label-15-16-x-15-16
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML & CSS Avery Labels (5160) by MM at Boulder Information Services</title>
+    <link href="labels.css" rel="stylesheet" type="text/css" >
+    <style>
+    body {
+        width: 8.5in;
+        margin: 0in .1875in;
+        }
+    .label{
+        /* Avery 5160 labels -- CSS and HTML by MM at Boulder Information Services */
+        width: 2.025in; /* plus .6 inches from padding */
+        height: .875in; /* plus .125 inches from padding */
+        padding: .125in .3in 0;
+        margin-right: .125in; /* the gutter */
+
+        float: left;
+
+        text-align: center;
+        overflow: hidden;
+
+        outline: 1px dotted; /* outline doesn't occupy space like border does */
+        }
+    .page-break  {
+        clear: left;
+        display:block;
+        page-break-after:always;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="label"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" /><br>Human readable</div>
+<div class="label"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" /><br>Human readable</div>
+<div class="label"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" /><br>Human readable</div>
+<div class="label"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" /><br>Human readable</div>
+<div class="label">(Repeat 30 times)</div>
+<div class="page-break"></div>
+
+</body>
+</html>
+
+http://barcode-coder.com/en/barcode-jquery-plugin-201.html
+
+http://barcode-coder.com/en/barcode-jquery-plugin-201.html
+$(“#bcTarget”).barcode(“PRODUCT-CODE”, “code39”,{barWidth:1, barHeight:40, showHRI: false});
+PRODUCT-CODE
+
+
+http://barcode-coder.com/en/datamatrix-specification-104.html
+
+http://barcode-coder.com/en/barcode-jquery-plugin-201.html
+
+https://github.com/jbdemonte/barcode

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ADRC Barcode Generator</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"  crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"  crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+
+    <!-- Now include the barcode generation Javascript code -->
+    <script src="barcode/jquery/jquery-barcode.js"></script>
+
+
+    <style>
+    label_body {
+        width: 8.5in;
+        margin: 0in .1875in;
+    }
+    
+    .label_5160 {
+        /* Avery 5160 labels -- CSS and HTML by MM at Boulder Information Services */
+        width: 2.025in;
+        /* plus .6 inches from padding */
+        height: .875in;
+        /* plus .125 inches from padding */
+        padding: .125in .3in 0;
+        margin-right: .125in;
+        /* the gutter */
+        float: left;
+        text-align: center;
+        overflow: hidden;
+        outline: 1px dotted;
+        /* outline doesn't occupy space like border does */
+    }
+    
+    .page-break {
+        clear: left;
+        display: block;
+        page-break-after: always;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Static navbar -->
+    <div id="exTab1" class="container">
+        <nav class="navbar navbar-default">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <a href="#case_info_div" data-toggle="tab">Case Information</a>
+                </li>
+                <li><a href="#sample_barcode_script" data-toggle="tab">Sample Labels to Print</a>
+                </li>
+                <li><a href="#dynamic_labels" data-toggle="tab">Dynamic Labels</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="tab-content clearfix">
+        <div id="sample_barcode_script" class="label_body tab-pane">
+            <div class="label_5160"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" />
+                <br>Human readable</div>
+            <div class="label_5160"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" />
+                <br>Human readable</div>
+            <div class="label_5160"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" />
+                <br>Human readable</div>
+            <div class="label_5160"><img src="https://boulderinformationservices.files.wordpress.com/2011/08/barcode_sample.png" />
+                <br>Human readable</div>
+            <div class="label">(Repeat 30 times)</div>
+            <div class="page-break"></div>
+        </div>
+        <div class="tab-pane active" id="case_info_div">
+            <h3>Info about LabelSize and Patients Should Go here</h3>
+            <input type="button" onclick="printDiv('sample_barcode_script')" value="print a div!" />
+        </div>
+        <div class="tab-pane " id="dynamic_labels">
+        
+        </div>
+       
+        
+    </div>
+   
+<script>
+
+/* w=window.open();
+w.document.write($('.report_left_inner').html());
+w.print();
+w.close(); */
+$(document).ready( function() {
+
+//$("#bcTarget").barcode("BarCodeGoesHere", "datamatrix");     
+
+
+cur_label_set = generate_label_set('ADRC56-12','')
+create_labels(cur_label_set,"dynamic_labels");
+
+});
+
+
+function create_labels( slide_name_list, target_div)
+  {
+    /* This function expects a list of slide names, it will then generate the appropriate Barcodes
+    and function calls and push these newly created divs to the specified target */
+//$("#dynamic_labels").append('<div id="myid" style="border:1px dashed #CCCCCC;"></div>')
+    label_set = "label_5160"
+  $.each(slide_name_list, function(idx,slidename)
+      {
+
+        $("#"+target_div).append(`<div id="sld_${idx}${slidename}" class="${label_set}"></div>`);
+        //I think I should be able to also create the barcode here
+        $("#sld_"+idx+slidename).barcode(slidename, "datamatrix",{output:'css',moduleSize:3,fontSize:9});     
+
+      })
+
+  
+  }
+
+
+function generate_label_set( pid, label_scheme) {
+
+//Given a patientid/PID and a label_scheme which specifies the template I want to use for label creation
+//This will create and append the necessary elements to a target DIV... basically this will autonumber
+//a set of labels
+stain_sets = ['aBeta', 'HE', 'Tau','Biels']
+slide_ids = ['1A','1B','1C','1D','1E']
+
+slide_name_list = []
+
+for(var stain=0; stain < stain_sets.length; stain++)
+{
+  for( var sid = 0; sid < slide_ids.length; sid++)
+  { 
+    slide_name = `${pid}_${stain_sets[stain]}_${slide_ids[sid]}`
+    slide_name_list.push(slide_name)
+
+  }
+}
+
+return slide_name_list;
+}
+
+
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+</script>
+</html>
+</div>
+</body>
+
+</html>
